@@ -1,0 +1,10 @@
+timestamp,city,temperature,humidity,pressure,wind_speed,description
+2025-05-29 17:55:22,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 17:56:22,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 17:57:22,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 17:58:22,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 17:59:23,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 18:00:23,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 18:01:23,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 18:02:23,Delhi,41.66,22.0,991.0,1.9,broken clouds
+2025-05-29 18:03:24,Delhi,41.66,22.0,991.0,1.9,broken clouds

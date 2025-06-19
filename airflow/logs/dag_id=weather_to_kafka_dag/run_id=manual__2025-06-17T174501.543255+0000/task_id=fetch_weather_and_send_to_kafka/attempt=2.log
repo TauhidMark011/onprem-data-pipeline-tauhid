@@ -1,0 +1,25 @@
+[2025-06-17T17:46:14.433+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_to_kafka_dag.fetch_weather_and_send_to_kafka manual__2025-06-17T17:45:01.543255+00:00 [queued]>
+[2025-06-17T17:46:14.450+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_to_kafka_dag.fetch_weather_and_send_to_kafka manual__2025-06-17T17:45:01.543255+00:00 [queued]>
+[2025-06-17T17:46:14.450+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2025-06-17T17:46:14.495+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): fetch_weather_and_send_to_kafka> on 2025-06-17 17:45:01.543255+00:00
+[2025-06-17T17:46:14.500+0000] {standard_task_runner.py:60} INFO - Started process 343 to run task
+[2025-06-17T17:46:14.505+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'weather_to_kafka_dag', 'fetch_weather_and_send_to_kafka', 'manual__2025-06-17T17:45:01.543255+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/weather_to_kafka_dag.py', '--cfg-path', '/tmp/tmp11ifxltz']
+[2025-06-17T17:46:14.507+0000] {standard_task_runner.py:88} INFO - Job 16: Subtask fetch_weather_and_send_to_kafka
+[2025-06-17T17:46:14.604+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_to_kafka_dag.fetch_weather_and_send_to_kafka manual__2025-06-17T17:45:01.543255+00:00 [running]> on host f6b38c446309
+[2025-06-17T17:46:14.756+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='commander_tauhid' AIRFLOW_CTX_DAG_ID='weather_to_kafka_dag' AIRFLOW_CTX_TASK_ID='fetch_weather_and_send_to_kafka' AIRFLOW_CTX_EXECUTION_DATE='2025-06-17T17:45:01.543255+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-17T17:45:01.543255+00:00'
+[2025-06-17T17:46:14.757+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-17T17:46:14.766+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/airflow/kafka_producer/weather_producer.py']
+[2025-06-17T17:46:14.775+0000] {subprocess.py:86} INFO - Output:
+[2025-06-17T17:46:14.804+0000] {subprocess.py:93} INFO - python: can't open file '/opt/airflow/kafka_producer/weather_producer.py': [Errno 2] No such file or directory
+[2025-06-17T17:46:14.807+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-06-17T17:46:14.827+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-06-17T17:46:14.832+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=weather_to_kafka_dag, task_id=fetch_weather_and_send_to_kafka, execution_date=20250617T174501, start_date=20250617T174614, end_date=20250617T174614
+[2025-06-17T17:46:14.885+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 16 for task fetch_weather_and_send_to_kafka (Bash command failed. The command returned a non-zero exit code 2.; 343)
+[2025-06-17T17:46:14.920+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-06-17T17:46:14.949+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

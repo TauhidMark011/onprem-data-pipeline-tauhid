@@ -1,0 +1,11 @@
+v1
+{"path":"file:///opt/weather_parquet/part-00000-38d389ab-7c65-4a5d-b79b-d404f393756b-c000.snappy.parquet","size":839,"isDir":false,"modificationTime":1748520790918,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-0634e74b-a6fa-4170-90e8-57151a422481-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521022773,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-722e5a0a-c0da-49fd-9b53-44e6c72b08c3-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521081519,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-d45417b5-abe5-4d4f-9bb2-306a4de03d4a-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521141495,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-0061d769-3517-4663-851b-874f6207788c-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521201558,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-2e938111-2822-46c8-a8c2-d13199a6f073-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521261921,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-0d57b93b-e6d5-413c-825f-f1a8f21be20f-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521321595,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-3ffe5fa0-637a-494e-aa5b-cb50bd1a5997-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521381723,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-ad95398a-3446-4c7f-b4b3-38f89b2be6bb-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521441512,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///opt/weather_parquet/part-00000-90fa5902-cdbd-4e7a-b5e1-8ee5f7c2e902-c000.snappy.parquet","size":2096,"isDir":false,"modificationTime":1748521501656,"blockReplication":1,"blockSize":33554432,"action":"add"}
