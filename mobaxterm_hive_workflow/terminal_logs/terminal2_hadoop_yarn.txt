@@ -1,0 +1,78 @@
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Wed Jul  2 20:49:41 2025
+[talam@localhost ~]$ start-dfs.sh
+Starting namenodes on [localhost]
+localhost: Warning: your password will expire in 0 days.
+Starting datanodes
+localhost: Warning: your password will expire in 0 days.
+Starting secondary namenodes [localhost.localdomain]
+localhost.localdomain: Warning: your password will expire in 0 days.
+2025-07-02 21:04:55,668 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[talam@localhost ~]$ passwd
+Changing password for user talam.
+Current password:
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[talam@localhost ~]$ start-yarn.sh
+Starting resourcemanager
+Starting nodemanagers
+[talam@localhost ~]$ jps
+3043 NameNode
+3860 NodeManager
+3157 DataNode
+4298 Jps
+3324 SecondaryNameNode
+3757 ResourceManager
+[talam@localhost ~]$ sudo systemctl start mysqld
+[sudo] password for talam:
+Sorry, try again.
+[sudo] password for talam:
+[talam@localhost ~]$ sudo systemctl status mysqld
+● mysqld.service - MySQL 8.0 database server
+     Loaded: loaded (/usr/lib/systemd/system/mysqld.service; disabled; preset: disabled)
+     Active: active (running) since Wed 2025-07-02 21:31:52 IST; 18s ago
+    Process: 4357 ExecStartPre=/usr/libexec/mysql-check-socket (code=exited, status=0/SUCCESS)
+    Process: 4379 ExecStartPre=/usr/libexec/mysql-prepare-db-dir mysqld.service (code=exited, status=0/SUCCESS)
+   Main PID: 4413 (mysqld)
+     Status: "Server is operational"
+      Tasks: 38 (limit: 22780)
+     Memory: 433.1M
+        CPU: 7.885s
+     CGroup: /system.slice/mysqld.service
+             └─4413 /usr/libexec/mysqld --basedir=/usr
+
+Jul 02 21:31:43 localhost.localdomain systemd[1]: Starting MySQL 8.0 database server...
+Jul 02 21:31:52 localhost.localdomain systemd[1]: Started MySQL 8.0 database server.
+[talam@localhost ~]$
+
+----------------------------------------------*******************------------------------------------------------------
+ Command linux to close all the setup services in order:-
+1.Beeline : (Type)  !quit (!close , !quit)
+2. Stop HiveServer2: pkill -f HiveServer2 , ps -ef | grep HiveServer2 (verify) | hive --service hiveserver2 --stop
+3.Stop HiveMetaStore: pkill -f HiveMetaStore , ps -ef | grep -i metastore (verify)
+3. Stop mysql server: sudo systemctl stop mysqld , sudo systemctl status mysqld (verify)
+4..Stop Hadoop Services: stop-yarn.sh
+5.stop-dfs.sh
+6.exit; MobaXterm
+7. :quit (Safely Exiting Spark Shell)
+
+Command to start all the setup services in order
+1.Start MySQL Service: sudo systemctl start mysqld
+  Verify Status: sudo systemctl status mysqld
+  mysql -u root -p
+2.Hive Metastore: hive --service metastore
+3.HiveServer2: hive --service hiveserver2
+4.Beeline client : beeline -u jdbc:hive2://localhost:10000 -n talam
+5.start-dfs.sh , start-yarn.sh
+6.Launch Spark: spark-shell --conf spark.sql.catalogImplementation=hive  |  spark.sql("SHOW DATABASES").show() 
+7. spark-submit --master local[*] \
+ --jars /home/talam/spark/jars/mysql-connector-java-8.0.28.jar \
+ --conf spark.sql.catalogImplementation=hive \
+ /home/talam/spark_batch_etl.py
+ (One-liner (recommended in MobaXterm terminal))
+8.To start pySpark : pyspark --master local[*] \
+--jars /home/talam/spark/jars/mysql-connector-java-8.0.28.jar
+9. jps (Java virtual Machine Process Status Tool. This shows all Java-based services running on your machine)
+----------------------------------------------*******************------------------------------------------------------

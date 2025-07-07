@@ -7,10 +7,10 @@ fake = faker.Faker()
 
 #MySQL connection
 conn = mysql.connector.connect(
-    host='localhost',
+    host='mysql',
     port=3306,
     user='root',
-    password='1438011maze',
+    password='root',
     database='weather_pipeline'
 )
 cursor = conn.cursor()
@@ -34,7 +34,8 @@ for _ in range(10):
     device_id = fake.uuid4()
     device_type = random.choice(device_types)
     status = random.choice(statuses)
-    location = fake.city()
+    # location = fake.city()
+    location = "Delhi"
 
     cursor.execute("""
         INSERT INTO devices (device_id, device_type, status, location)

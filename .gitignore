@@ -1,0 +1,26 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Spark output & logs
+spark/weather_parquet/
+*.crc
+*.log
+
+# Docker-related
+*.pid
+*.sock
+
+# Virtual environment
+venv/
+env/
+
+# API Key
+.env
+
+# # VS Code project settings (optional)
+# .vscode/
+
+# OS-generated
+.DS_Store
+Thumbs.db

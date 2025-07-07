@@ -18,6 +18,7 @@ kafka_df = spark.readStream \
     .option("kafka.bootstrap.servers", "kafka:9092") \
     .option("subscribe", "weather-topic") \
     .option("startingOffsets", "latest") \
+    .option("failOnDataLoss", "false") \
     .load()
 
 print("✅ Connected to Kafka topic: weather-topic")
@@ -26,6 +27,8 @@ print("✅ Connected to Kafka topic: weather-topic")
 schema = StructType() \
     .add("timestamp", StringType()) \
     .add("city", StringType()) \
+    .add("latitude", FloatType()) \
+    .add("longitude", FloatType()) \
     .add("temperature", FloatType()) \
     .add("humidity", FloatType()) \
     .add("pressure", FloatType()) \
@@ -36,9 +39,16 @@ schema = StructType() \
 json_df = kafka_df.selectExpr("CAST(value AS STRING)") \
     .select(from_json(col("value"), schema).alias("data")) \
     .select("data.*")
-
+#Adding these logs here
+json_df.printSchema()
 print("JSON parsing complete.")
-
+#Debug Console Sink Here (non-blocking)
+json_df.select("latitude", "longitude") \
+    .writeStream \
+    .outputMode("append") \
+    .format("console") \
+    .option("truncate", False) \
+    .start()
 #Write to Parquet in micro-batches
 query = json_df.writeStream \
     .format("parquet") \
@@ -49,6 +59,7 @@ query = json_df.writeStream \
     .start()
 
 print("✅ Streaming query started. Writing to /opt/weather_parquet/")
+#Await Termination on Main Query
 try:
     query.awaitTermination()
 except KeyboardInterrupt:

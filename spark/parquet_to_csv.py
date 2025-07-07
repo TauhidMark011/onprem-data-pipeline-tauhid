@@ -5,7 +5,7 @@ spark = SparkSession.builder \
     .appName("Parquet to CSV Converter") \
     .getOrCreate()
 
-#Path to Parquet files (already mounted to your container!)
+#Path to Parquet files (already mounted to the container!)
 parquet_path = "/opt/weather_parquet/"
 
 #Read all part-*.parquet files

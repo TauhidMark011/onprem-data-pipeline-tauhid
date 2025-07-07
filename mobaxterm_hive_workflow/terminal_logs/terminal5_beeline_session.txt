@@ -1,0 +1,83 @@
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Last login: Wed Jul  2 21:34:39 2025 from 192.168.174.1
+[talam@localhost ~]$ beeline -u jdbc:hive2://localhost:10000 -n talam
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.18.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/tez/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.18.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/tez/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-reload4j-1.7.36.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://localhost:10000
+Connected to: Apache Hive (version 4.0.1)
+Driver: Hive JDBC (version 4.0.1)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 4.0.1 by Apache Hive
+0: jdbc:hive2://localhost:10000> SHOW DATABASES;
+INFO  : Compiling command(queryId=talam_20250702215855_30faebda-8387-428d-8db5-3bece13769e8): SHOW DATABASES
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Created Hive schema: Schema(fieldSchemas:[FieldSchema(name:database_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=talam_20250702215855_30faebda-8387-428d-8db5-3bece13769e8); Time taken: 3.597 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=talam_20250702215855_30faebda-8387-428d-8db5-3bece13769e8): SHOW DATABASES
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=talam_20250702215855_30faebda-8387-428d-8db5-3bece13769e8); Time taken: 0.675 seconds
++-------------------+
+|   database_name   |
++-------------------+
+| default           |
+| usg_censusdb      |
+| weather_pipeline  |
++-------------------+
+3 rows selected (5.562 seconds)
+0: jdbc:hive2://localhost:10000> USE weather_pipeline;
+INFO  : Compiling command(queryId=talam_20250702215932_769bdf70-57d9-4791-9025-1602b4548c0f): USE weather_pipeline
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Created Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=talam_20250702215932_769bdf70-57d9-4791-9025-1602b4548c0f); Time taken: 0.063 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=talam_20250702215932_769bdf70-57d9-4791-9025-1602b4548c0f): USE weather_pipeline
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=talam_20250702215932_769bdf70-57d9-4791-9025-1602b4548c0f); Time taken: 0.05 seconds
+No rows affected (0.165 seconds)
+0: jdbc:hive2://localhost:10000> SHOW TABLES;
+INFO  : Compiling command(queryId=talam_20250702215942_b897f53b-f749-4a14-9c2f-93d4af3c5004): SHOW TABLES
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Created Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=talam_20250702215942_b897f53b-f749-4a14-9c2f-93d4af3c5004); Time taken: 0.052 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=talam_20250702215942_b897f53b-f749-4a14-9c2f-93d4af3c5004): SHOW TABLES
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=talam_20250702215942_b897f53b-f749-4a14-9c2f-93d4af3c5004); Time taken: 0.29 seconds
++--------------+
+|   tab_name   |
++--------------+
+| final_table  |
++--------------+
+1 row selected (0.399 seconds)
+0: jdbc:hive2://localhost:10000> SELECT * FROM final_table LIMIT 5;
+INFO  : Compiling command(queryId=talam_20250702220016_8a99fcf3-ffec-4672-a23d-b96345210c6d): SELECT * FROM final_table LIMIT 5
+INFO  : No Stats for weather_pipeline@final_table, Columns: device_id, temperature, location, log_time
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Created Hive schema: Schema(fieldSchemas:[FieldSchema(name:final_table.device_id, type:string, comment:null), FieldSchema(name:final_table.location, type:string, comment:null), FieldSchema(name:final_table.temperature, type:double, comment:null), FieldSchema(name:final_table.log_time, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=talam_20250702220016_8a99fcf3-ffec-4672-a23d-b96345210c6d); Time taken: 5.521 seconds
+INFO  : Concurrency mode is disabled, not creating a lock manager
+INFO  : Executing command(queryId=talam_20250702220016_8a99fcf3-ffec-4672-a23d-b96345210c6d): SELECT * FROM final_table LIMIT 5
+INFO  : Completed executing command(queryId=talam_20250702220016_8a99fcf3-ffec-4672-a23d-b96345210c6d); Time taken: 0.0 seconds
++------------------------+-----------------------+--------------------------+-----------------------+
+| final_table.device_id  | final_table.location  | final_table.temperature  | final_table.log_time  |
++------------------------+-----------------------+--------------------------+-----------------------+
+| D005                   | Websterberg           | 34.65                    | 2025-05-29 22:51:59   |
+| D006                   | Odomside              | 29.25                    | 2025-05-29 22:51:59   |
+| D007                   | Danielchester         | 40.22                    | 2025-05-29 22:51:59   |
+| D008                   | South Briannaborough  | 39.3                     | 2025-05-29 22:51:59   |
+| D009                   | South Keithmouth      | 28.2                     | 2025-05-29 22:51:59   |
++------------------------+-----------------------+--------------------------+-----------------------+
+5 rows selected (7.212 seconds)
+0: jdbc:hive2://localhost:10000>

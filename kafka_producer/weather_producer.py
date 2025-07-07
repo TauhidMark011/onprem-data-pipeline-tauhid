@@ -7,6 +7,8 @@ import requests
 import json
 import time
 import logging
+from dotenv import load_dotenv
+import os
 
 # ------------------------ Logger Setup ------------------------
 logging.basicConfig(
@@ -16,7 +18,8 @@ logging.basicConfig(
 )
 
 # ------------------------ API Setup ------------------------
-API_KEY = '5e571b20046f20210aa3ebf19494e64b'
+load_dotenv(dotenv_path="/opt/airflow/kafka_producer/.env")
+API_KEY = os.getenv("API_KEY")
 CITY = 'Delhi'
 URL = f'https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'
 
@@ -32,7 +35,7 @@ except Exception as e:
     exit(1)
 
 # ------------------------ Kafka Callbacks ------------------------
-def on_success(record_metadata):
+def on_success(record_metadata):    
     logging.info(
         f"Sent to topic '{record_metadata.topic}' | Partition: {record_metadata.partition}, Offset: {record_metadata.offset}"
     )
@@ -51,6 +54,8 @@ while True:
         weather_data = {
             "timestamp": time.strftime('%Y-%m-%d %H:%M:%S'),
             "city": CITY,
+            "latitude": data["coord"]["lat"],        #NEW
+            "longitude": data["coord"]["lon"],   
             "temperature": data["main"]["temp"],
             "humidity": data["main"]["humidity"],
             "pressure": data["main"]["pressure"],
