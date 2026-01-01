@@ -1,3 +1,6 @@
+<img width="1536" height="1024" alt="ChatGPT Image Jul 3, 2025, 09_35_11 PM" src="https://github.com/user-attachments/assets/4f2a2140-74e8-4c88-8d2e-f18f575b35bd" />
+![final_pro.png…]()
+
 # onprem-data-pipeline-tauhid
 This project demonstrates a complete Full-Stack On-Premise Data Pipeline built for processing real-time and batch data from IoT and Weather sources. It integrates key big data components including MySQL, Kafka, Spark (Batch & Streaming), Hive, Airflow, and Docker, showcasing practical end-to-end data engineering skills.
 
