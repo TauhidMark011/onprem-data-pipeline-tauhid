@@ -50,17 +50,17 @@ Monitoring via Grafana & Prometheus.
 📂**Architecture**
 
                  +-----------------------+
-                 |   OpenWeather API      |
+-                 |   OpenWeather API      |
                  +-----------+-----------+
                              |
                              v
-+------------+      +-----------------+     +------------+
-|   Faker    | ---> |   Kafka Topic   | <-- | Weather API |
-+------------+      +--------+--------+     +------------+
+  +------------+      +-----------------+     +------------+
+- |   Faker    | ---> |   Kafka Topic   | <-- | Weather API |
+  +------------+      +--------+--------+     +------------+
                              |
                              v
                     +-------------------+
-                    | Spark Streaming   |
+ -                   | Spark Streaming   |
                     |  (Write to Parquet)|
                     +--------+----------+
                              |
@@ -71,9 +71,9 @@ Monitoring via Grafana & Prometheus.
                              |
          +-------------------+--------------------+
          |                                        |
-+--------v--------+                     +--------v--------+
-|  Hive Table     |                     | MySQL Final Tbl |
-+-----------------+                     +-----------------+
+   +--------v--------+                     +--------v--------+
+-  |  Hive Table     |                     | MySQL Final Tbl |
+   +-----------------+                     +-----------------+
 
 ⚡**Modules**
 3.1 **Ingestion**
