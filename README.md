@@ -72,7 +72,7 @@ Monitoring via Grafana & Prometheus.
          +-------------------+--------------------+
          |                                        |
     +--------v--------+                     +--------v--------+
--   |  Hive Table     |              -       | MySQL Final Tbl |
+-   |  Hive Table     |              -       | MySQL Final Table |
     +-----------------+                     +-----------------+
 
 ⚡**Modules**
