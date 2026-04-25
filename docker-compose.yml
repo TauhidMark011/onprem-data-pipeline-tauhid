@@ -100,6 +100,7 @@ services:
       - ./spark/weather_parquet:/opt/weather_parquet
       - ./spark-dist/spark-3.5.0-bin-hadoop3:/opt/spark   #Corrected Spark binaries
       - ./kafka_producer/.env:/opt/airflow/kafka_producer/.env
+      - /var/run/docker.sock:/var/run/docker.sock  #Airflow container must be allowed to call Docker
     ports:
       - "8080:8080"
     command: >
@@ -139,6 +140,7 @@ services:
       - ./spark:/opt/spark-app                    #MyETL code
       - ./spark/weather_parquet:/opt/weather_parquet
       - ./spark-dist/spark-3.5.0-bin-hadoop3:/opt/spark   #Corrected Spark binaries
+      - /var/run/docker.sock:/var/run/docker.sock
     command: >
       bash -c "
         echo 'Waiting 10s to let webserver initialize DB...';
