@@ -55,7 +55,7 @@ Monitoring via Grafana & Prometheus.
 **Monitoring**
 - Optional visualization with Grafana dashboards
 
- 🛠__Tech Stack__ :- 
+ __Tech Stack__ :- 
  
  | Layer              | Technology                                      |
 | ------------------ | ----------------------------------------------- |
